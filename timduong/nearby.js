@@ -22,10 +22,10 @@ async function nearestPoint(Lat, Lng) {
         })
 
         near = min
-        console.log('trong await',near );
+        console.log('trong await',near);
     })
     console.log('ngoai await',near);
     return near.key._id;
 }
-
+ 
 module.exports = nearestPoint;
