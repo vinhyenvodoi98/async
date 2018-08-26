@@ -15,24 +15,23 @@ router.get('/local',(req,res)=>{
     let end_lat = Number(req.query.end_lat)
     let end_lng = Number(req.query.end_lng)
 
-    nearestPoint(start_lat,start_lng).then((idstart)=>{
-        console.log(idstart);
-        res.json({
-            Title: idstart    
-        })
-    });
-    //console.log(start_lat);
     // nearestPoint(start_lat,start_lng).then((idstart)=>{
     //     console.log(idstart);
-    //     nearestPoint(end_lat,end_lng).then((idend)=>{
-    //         createMap(Number(idstart),Number(idend)).then((route)=>{ 
-    //             console.log(route);
-    //             routeJson(route).then((step)=>{
-    //                 console.log(JSON.parse(step));
-    //             }) 
-    //         })
+    //     res.json({
+    //         Title: idstart    
     //     })
-    // });    
+    // });
+    //console.log(start_lat);
+    nearestPoint(start_lat,start_lng).then((idstart)=>{
+        nearestPoint(end_lat,end_lng).then((idend)=>{
+            createMap(Number(idstart),Number(idend)).then((route)=>{ 
+                console.log(route);
+                routeJson(route).then((step)=>{
+                    console.log(JSON.parse(step));
+                }) 
+            })
+        })
+    });    
     
 });
 
